@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Birthday Surprise 💖</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    background:linear-gradient(135deg,#ffcad4,#ffe5ec);
+}
+
+/* background */
+body::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:url("Anime-Couple-Desktop-Wallpaper.jpg") center/cover;
+    opacity:.18;
+}
+
+/* hearts */
+.heart{
+    position:absolute;
+    font-size:25px;
+    animation:float 8s linear infinite;
+}
+
+@keyframes float{
+    from{ transform:translateY(100vh); }
+    to{ transform:translateY(-20vh); }
+}
+
+/* main box */
+.box{
+    position:relative;
+    z-index:2;
+    width:380px;
+    padding:35px;
+    border-radius:30px;
+    background:rgba(255,255,255,.25);
+    backdrop-filter:blur(15px);
+    box-shadow:0 10px 40px rgba(0,0,0,.15);
+    text-align:center;
+    animation:pop .7s;
+}
+
+@keyframes pop{
+    from{
+        opacity:0;
+        transform:scale(.6);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+.logo{
+    font-size:55px;
+}
+
+.title{
+    color:#d63384;
+    font-size:28px;
+    margin:10px 0;
+}
+
+.subtitle{
+    color:#444;
+    margin-bottom:25px;
+}
+
+/* pin */
+.pin-container{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+}
+
+.pin-container input{
+    width:50px;
+    height:60px;
+    border:none;
+    outline:none;
+    border-radius:15px;
+    text-align:center;
+    font-size:25px;
+}
+
+button{
+    width:100%;
+    margin-top:25px;
+    padding:15px;
+    border:none;
+    border-radius:50px;
+    cursor:pointer;
+    color:white;
+    font-size:16px;
+    background:linear-gradient(to right,#ff4d88,#ff80aa);
+}
+
+/* confetti */
+.confetti{
+    position:fixed;
+    width:8px;
+    height:8px;
+    top:-10px;
+    animation:fall 2s linear forwards;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(100vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* envelope */
+#envelope{
+    display:none;
+    width:260px;
+    height:160px;
+    background:#8B4513;
+    position:relative;
+    cursor:pointer;
+    z-index:5;
+}
+
+#envelope:before{
+    content:"";
+    position:absolute;
+    border-left:130px solid transparent;
+    border-right:130px solid transparent;
+    border-top:85px solid #A0522D;
+}
+
+/* letter */
+#letter{
+    display:none;
+    cursor:pointer;
+}
+
+/* gallery */
+#gallery{
+    display:none;
+    position:absolute;
+    width:95%;
+    height:95%;
+    overflow:auto;
+    z-index:10;
+    padding:20px;
+    background:rgba(255,255,255,.95);
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    border-radius:20px;
+    padding:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.card img,
+.card video{
+    width:100%;
+    border-radius:15px;
+}
+
+.msg{
+    margin-top:12px;
+    padding:0 8px;
+    font-style:italic;
+    font-size:14px;
+    line-height:1.7;
+    color:#555;
+    text-align:justify;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- hearts -->
+<div class="heart" style="left:10%">💖</div>
+<div class="heart" style="left:30%; animation-delay:2s;">💕</div>
+<div class="heart" style="left:50%; animation-delay:4s;">💗</div>
+<div class="heart" style="left:70%; animation-delay:1s;">💘</div>
+<div class="heart" style="left:90%; animation-delay:3s;">❤️</div>
+
+
+<!-- LOGIN -->
+<div id="login" class="box">
+
+<div class="logo">🧸</div>
+
+<div class="title">
+For Your Eyes Only
+</div>
+
+<div class="subtitle">
+Enter our special PIN 💖
+</div>
+
+<div class="pin-container">
+<input maxlength="1">
+<input maxlength="1">
+<input maxlength="1">
+<input maxlength="1">
+<input maxlength="1">
+<input maxlength="1">
+</div>
+
+<button onclick="checkPin()">
+Unlock My Heart 💌
+</button>
+
+</div>
+
+
+<!-- ENVELOPE -->
+<div id="envelope"></div>
+
+
+<!-- LETTER -->
+<div id="letter" class="box">
+
+<h2>🎂 Happy Birthday 🎉</h2>
+
+<br>
+
+<p style="font-style:italic; line-height:1.7;">
+
+Happy Birthday pem 💖<br><br>
+
+Thank you for existing...<br>
+Thank you for making my world brighter...<br>
+I treasure every moment with you...<br><br>
+
+(Click letter ❤️)
+
+</p>
+
+</div>
+
+
+<!-- GALLERY -->
+<div id="gallery">
+
+<h1 style="text-align:center; margin-bottom:25px;">
+Our Memories 💖
+</h1>
+
+<div class="grid">
+
+<div class="card">
+<img src="655c2cca-cfc1-4d3e-a6ec-e48a2694a03d.jpg">
+<div class="msg">
+This picture is one of my favorite memories with you. Every time I look at it, I remember how happy and peaceful that moment felt. Thank you for giving me memories worth keeping forever. 💕
+</div>
+</div>
+
+<div class="card">
+<img src="421692109_761489809198854_3019139890010073958_n.jpg">
+<div class="msg">
+Out of all the pictures we have, this one always makes me smile. It reminds me that even the simplest moments with you become something beautiful and unforgettable. ❤️
+</div>
+</div>
+
+<div class="card">
+<img src="422215406_1501843187026700_5878649355186687405_n.jpg">
+<div class="msg">
+This memory will always have a special place in my heart. Looking at this photo reminds me how lucky I am to share these wonderful moments with you. 💖
+</div>
+</div>
+
+<div class="card">
+<img src="421425016_830910972381011_62574483992885507_n.jpg">
+<div class="msg">
+Some memories fade with time, but this one never will. It captures not just a picture, but a feeling that I will always treasure deeply. 💘
+</div>
+</div>
+
+<div class="card">
+<img src="421962313_1097385558125043_6887832063526366867_n.jpg">
+<div class="msg">
+Every smile, every laugh, and every second in this photo tells a story that means so much to me. Thank you for making life feel this beautiful. 💕
+</div>
+</div>
+
+<div class="card">
+<img src="a12136fb-97e6-41fa-88b6-4159b892958c.jpg">
+<div class="msg">
+This picture reminds me that love is found in little moments like this. Simple, genuine, and something I never want to forget. ❤️
+</div>
+</div>
+
+
+<!-- videos -->
+<div class="card">
+<video controls>
+<source src="39a82325-c514-400b-b220-0ca0cda08a32.mp4">
+</video>
+<div class="msg">
+This video holds laughter, happiness, and memories that I will treasure forever. 🎥💕
+</div>
+</div>
+
+<div class="card">
+<video controls>
+<source src="422929951_6990921444361067_8937695058981248834_n.mp4">
+</video>
+<div class="msg">
+Every second of this video reminds me how lucky I am to have you in my life. 💖
+</div>
+</div>
+
+<div class="card">
+<video controls>
+<source src="423535769_7071677916255119_3616946444171711547_n.mp4">
+</video>
+<div class="msg">
+No matter how much time passes, these moments will always stay in my heart forever. ❤️
+</div>
+</div>
+
+</div>
+</div>
+
+
+<script>
+
+const PIN="552026";
+
+const inputs=document.querySelectorAll(".pin-container input");
+
+inputs.forEach((input,i)=>{
+
+    input.addEventListener("input",()=>{
+
+        if(input.value && i<5){
+            inputs[i+1].focus();
+        }
+
+    });
+
+});
+
+function confetti(){
+
+    for(let i=0;i<40;i++){
+
+        let c=document.createElement("div");
+
+        c.className="confetti";
+
+        c.style.left=Math.random()*100+"vw";
+
+        c.style.background=
+        `hsl(${Math.random()*360},100%,50%)`;
+
+        document.body.appendChild(c);
+
+        setTimeout(()=>c.remove(),2000);
+
+    }
+
+}
+
+/* LOGIN */
+function checkPin(){
+
+    let entered="";
+
+    inputs.forEach(i=>entered+=i.value);
+
+    if(entered===PIN){
+
+        confetti();
+
+        login.style.display="none";
+
+        envelope.style.display="block";
+
+    }
+    else{
+
+        alert("Wrong PIN 😢");
+
+    }
+
+}
+
+/* envelope */
+envelope.onclick=()=>{
+
+    confetti();
+
+    envelope.style.display="none";
+
+    letter.style.display="block";
+
+}
+
+/* letter */
+letter.onclick=()=>{
+
+    confetti();
+
+    letter.style.display="none";
+
+    gallery.style.display="block";
+
+}
+
+</script>
+
+</body>
+</html>
